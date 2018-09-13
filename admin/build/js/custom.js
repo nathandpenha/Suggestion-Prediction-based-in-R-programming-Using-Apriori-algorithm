@@ -2521,11 +2521,11 @@ if (typeof NProgress != 'undefined') {
 			console.log('init_morris_charts');
 
 			if ($('#graph_bar').length){
-
+				console.log("Length : "+$("#graph_bar").length);
 				Morris.Bar({
 				  element: 'graph_bar',
 				  data: [
-					{device: 'iPhone 4', geekbench: 380},
+					{device: 'iPhone 4', geekbench: 980},
 					{device: 'iPhone 4S', geekbench: 655},
 					{device: 'iPhone 3GS', geekbench: 275},
 					{device: 'iPhone 5', geekbench: 1571},

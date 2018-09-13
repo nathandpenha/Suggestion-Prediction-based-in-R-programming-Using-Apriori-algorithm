@@ -70,4 +70,25 @@ $(document).ready(function() {
 			});
 		},
 	});
+	$.ajax({
+		url: 'http://localhost:9191/ship',
+		type: 'GET',
+		success: function(data){
+			var morris = Morris.Bar({
+				element: 'graph_bar1',
+				data: data,
+				xkey: 'label',
+				ykeys: ['value'],
+				labels: ['Used by Customers'],
+				barRatio: 0.4,
+				barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+				xLabelAngle: 35,
+				hideHover: 'false',
+				resize: true
+			});
+			console.log(data);
+			//morris.setData(data);
+		}
+	});
 });
+//
