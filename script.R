@@ -28,6 +28,12 @@ function(val){
   toJSON(lapply(df_cat, function(x){as.list(summary(x))}), pretty = TRUE, auto_unbox = TRUE)
 }
 
+#' Market Analysis
+#' @get /market
+function(){
+  ins
+}
+
 #' Return the Shipping Mode and their count
 #' @get /ship
 function(){
@@ -90,6 +96,13 @@ function(){
   print(loli)
 }
 
+#' Apriori Chart
+#' @png (width = 800, height = 500)
+#' @get /apriori
+function(){
+  plot(basket_rules, method="graph", control=list(type="items"), measure = "support", shading = "lift")
+}
+
 
 function(){
   library(RColorBrewer)
@@ -112,12 +125,11 @@ trans@itemInfo$labels <- gsub("\"","", trans@itemInfo$labels)
 basket_rules <- apriori(trans,parameter = list(supp = 0.001, minlen = 1, target = "frequent itemsets" ))
 ins <- inspect(basket_rules)
 summary(basket_rules)
-
+ins
 grepl("Levels", ins$items)
 
 #plot(basket_rules)
 #arules::itemFrequencyPlot(trans, topN=5)
-#plot(basket_rules, method="graph", control=list(type="items"), measure = "support", shading = "lift")
 #plot(basket_rules,measure=c("support","lift"),shading="confidence",interactive=F)
 #pie(trans)
 
