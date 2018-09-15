@@ -22,10 +22,14 @@ clean_data <- ddply(data, c("Order.ID","Order.Date","Ship.Mode","Segment","City"
 
 #' Retun the summary from a particular category
 #' @param val the category
-#' @post /category
-function(val){
-  df_cat <- data.frame(Name=data$Product.Name[which(data$Category == val)])
-  toJSON(lapply(df_cat, function(x){as.list(summary(x))}), pretty = TRUE, auto_unbox = TRUE)
+#' @get /category
+cat <- function(){
+  df_cat <- c()
+  for (val in unique(data$Category)){
+    df_cat[val] <- data.frame(Name=data$Product.Name[which(data$Category == val)])  
+  }
+  #toJSON(lapply(df_cat, function(x){as.list(summary(x))}), pretty = TRUE, auto_unbox = TRUE)
+  lapply(df_cat, function(x1){as.list(summary(x1, maxsum=10))})
 }
 
 #' Market Analysis

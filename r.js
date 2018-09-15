@@ -87,7 +87,6 @@ $(document).ready(function() {
 				resize: true
 			});
 			console.log(data);
-			//morris.setData(data);
 		}
 	});
 });
